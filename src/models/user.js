@@ -54,6 +54,34 @@ UserSchema.statics = {
 
     return user;
   },
+
+  /**
+   * Register user
+   * @param {string} email
+   * @param {string} name
+   * @param {string} password
+   * @returns {Promise<User, APIError>}
+   */
+  async register({ email, name, password }) {
+    const user = await this.getByEmail(email, true);
+
+    if (user)
+      throw new APIError({
+        message: 'User already exists',
+        status: httpStatus.FORBIDDEN,
+        isPublic: true,
+      });
+
+    const hash = await bcrypt.hash(password, 10);
+    const newUser = await this.create({
+      email,
+      name,
+      password: hash,
+    });
+    const token = newUser.generateToken();
+
+    return { user: newUser.toJSON(), token };
+  },
 };
 
 UserSchema.methods = {
