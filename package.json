@@ -1,0 +1,41 @@
+{
+  "name": "express-blog-demo",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel . -d dist --ignore dist --ignore node_modules --ignore babel.config.js --ignore package.json",
+    "dev:server": "nodemon --exec babel-node . --ignore dist/",
+    "lint": "eslint . --ext .js,.jsx --ignore-path .gitignore",
+    "lint:fix": "yarn lint --fix",
+    "lint:watch": "yarn lint --watch",
+    "start": "yarn build && node dist",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "http-status": "^1.6.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.0.1",
+    "morgan": "^1.10.0",
+    "winston": "^3.8.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.21.0",
+    "@babel/core": "^7.21.0",
+    "@babel/node": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.7.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "nodemon": "^2.0.21",
+    "prettier": "^2.8.4"
+  }
+}
